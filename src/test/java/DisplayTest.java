@@ -55,4 +55,12 @@ public class DisplayTest {
         assertEquals("PRICE $0.65", display.getMessage());
         assertEquals("INSERT COIN", display.getMessage());
     }
+
+    @Test
+    public void whenChangeInsertedGetMessageReturnsTotalAmountAvailableForPurchase(){
+        display.coinInserted(0.05);
+        assertEquals("$0.05", display.getMessage());
+        display.coinInserted(0.10);
+        assertEquals("$0.15", display.getMessage());
+    }
 }

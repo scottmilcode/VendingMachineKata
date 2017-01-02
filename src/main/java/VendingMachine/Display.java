@@ -24,7 +24,8 @@ public class Display {
             ProductSoldOut,  // @var indicates that a selected product is sold out
             ProductSelected; // @var indicates that an available product was selected
 
-    double ProductPrice; // @var price of selected product
+    double ProductPrice, // @var price of selected product
+           AmountAvailable; // @var total amount of currency available to use for purchase
 
     /////////////////////////////////////////////////////////////////////////////
     // @brief Default Constructor
@@ -34,7 +35,7 @@ public class Display {
     public Display(boolean changeAvailable){
         ChangeAvailable = changeAvailable;
         ProductVended = ProductSoldOut = ProductSelected = false;
-        ProductPrice = 0.0;
+        ProductPrice = AmountAvailable = 0.0;
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -54,10 +55,15 @@ public class Display {
             ProductSoldOut = false; //reset flag once message has been displayed
             return("SOLD OUT");
         }
+        else if(0 < AmountAvailable)
+        {
+            DecimalFormat currencyFormater = new DecimalFormat("#.##");
+            return("$" + currencyFormater.format(AmountAvailable));
+        }
         else if(ChangeAvailable){
             return("INSERT COIN");
         }
-        else
+        else //no return change available
         {
             return("EXACT CHANGE ONLY");
         }
@@ -77,6 +83,7 @@ public class Display {
     /////////////////////////////////////////////////////////////////////////////
     public void setProductVended(){
         ProductVended = true;
+        AmountAvailable = 0.0; //reset amount available
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -94,6 +101,11 @@ public class Display {
     {
         ProductSelected = true;
         ProductPrice = productPrice;
+    }
+
+    public void coinInserted(double amount)
+    {
+        AmountAvailable += amount;
     }
 
 }
