@@ -41,4 +41,11 @@ public class DisplayTest {
         assertEquals("THANK YOU", display.getMessage());
         assertEquals("INSERT COIN", display.getMessage()); //this check to ensure that the message returns to appropriate default
     }
+
+    @Test
+    public void whenProductSoldOutFlagSetAndChangeStillAvailableReturnsProductSoldOutFollowedByInsertCoin() {
+        display.setProductSoldOut();
+        assertEquals("SOLD OUT", display.getMessage());
+        assertEquals("INSERT COIN", display.getMessage());
+    }
 }

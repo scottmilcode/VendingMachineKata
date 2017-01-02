@@ -15,7 +15,8 @@ package VendingMachine;
 public class Display {
 
     boolean ChangeAvailable, // @var indicates if return change is available
-            ProductVended;   // @var indicates that a product was vended
+            ProductVended,   // @var indicates that a product was vended
+            ProductSoldOut;  // @var indicates that a selected product is sold out
 
     /////////////////////////////////////////////////////////////////////////////
     // @brief Default Constructor
@@ -24,7 +25,7 @@ public class Display {
     /////////////////////////////////////////////////////////////////////////////
     public Display(boolean changeAvailable){
         ChangeAvailable = changeAvailable;
-        ProductVended = false;
+        ProductVended = ProductSoldOut = false;
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -34,6 +35,10 @@ public class Display {
         if(ProductVended){
             ProductVended = false; //reset flag once message has been displayed
             return("THANK YOU");
+        }
+        else if(ProductSoldOut){
+            ProductSoldOut = false; //reset flag once message has been displayed
+            return("SOLD OUT");
         }
         else if(ChangeAvailable){
             return("INSERT COIN");
@@ -59,4 +64,12 @@ public class Display {
     public void setProductVended(){
         ProductVended = true;
     }
+
+    /////////////////////////////////////////////////////////////////////////////
+    // @brief Sets product sold out flag to tru
+    /////////////////////////////////////////////////////////////////////////////
+    public void setProductSoldOut(){
+        ProductSoldOut = true;
+    }
+
 }
