@@ -13,24 +13,32 @@ public class DisplayTest {
     Display display; //Display object used for testing
 
     @Before
-    public void setUp(){
+    public void setUp() {
         display = new Display(true);
     }
 
+    //Default message test cases
     @Test
-    public void afterInitializationWithTrueGetMessageReturnsInsertCoin(){
+    public void afterInitializationWithTrueGetMessageReturnsInsertCoin() {
         assertEquals("INSERT COIN", display.getMessage());
     }
 
     @Test
-    public void whenChangeAvailableFlagSetFalseGetMessageReturnsExactChangeOnly(){
+    public void whenChangeAvailableFlagSetFalseGetMessageReturnsExactChangeOnly() {
         display.setChangeAvailable(false);
         assertEquals("EXACT CHANGE ONLY", display.getMessage());
     }
 
     @Test
-    public void whenChangeAvailableFlagSetTrueGetMessageReturnsExactChangeOnly(){
+    public void whenChangeAvailableFlagSetTrueGetMessageReturnsExactChangeOnly() {
         display.setChangeAvailable(true);
         assertEquals("INSERT COIN", display.getMessage());
+    }
+
+    @Test
+    public void whenProductVendedFlagSetAndChangeStillAvailableReturnsThankYouFollowedByInsertCoin() {
+        display.setProductVended();
+        assertEquals("THANK YOU", display.getMessage());
+        assertEquals("INSERT COIN", display.getMessage()); //this check to ensure that the message returns to appropriate default
     }
 }

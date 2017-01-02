@@ -19,3 +19,10 @@ Application Assumptions / Functionalities
 
 Potential Add-ons / Features
 ----------------------------
+
+
+
+
+Notes
+-----
+Initially used more commits than I normally would to demonstrate development style
