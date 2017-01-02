@@ -24,26 +24,26 @@ public class DisplayTest {
     }
 
     @Test
-    public void whenChangeAvailableFlagSetFalseGetMessageReturnsExactChangeOnly() {
+    public void whenChangeNotAvailableGetMessageReturnsExactChangeOnly() {
         display.setChangeAvailable(false);
         assertEquals("EXACT CHANGE ONLY", display.getMessage());
     }
 
     @Test
-    public void whenChangeAvailableFlagSetTrueGetMessageReturnsExactChangeOnly() {
+    public void whenChangeAvailableGetMessageReturnsExactChangeOnly() {
         display.setChangeAvailable(true);
         assertEquals("INSERT COIN", display.getMessage());
     }
 
     @Test
-    public void whenProductVendedFlagSetAndChangeStillAvailableReturnsThankYouFollowedByInsertCoin() {
+    public void whenProductVendedAndChangeStillAvailableGetMessageReturnsThankYouFollowedByInsertCoin() {
         display.setProductVended();
         assertEquals("THANK YOU", display.getMessage());
         assertEquals("INSERT COIN", display.getMessage()); //this check to ensure that the message returns to appropriate default
     }
 
     @Test
-    public void whenProductSoldOutFlagSetAndChangeStillAvailableReturnsProductSoldOutFollowedByInsertCoin() {
+    public void whenProductSoldOutAndChangeStillAvailableGetMessageReturnsProductSoldOutFollowedByInsertCoin() {
         display.setProductSoldOut();
         assertEquals("SOLD OUT", display.getMessage());
         assertEquals("INSERT COIN", display.getMessage());
