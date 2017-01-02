@@ -48,4 +48,11 @@ public class DisplayTest {
         assertEquals("SOLD OUT", display.getMessage());
         assertEquals("INSERT COIN", display.getMessage());
     }
+
+    @Test
+    public void whenProductSelectedGetMessageReturnsPriceAndProductPriceFollowedByInsertCoin(){
+        display.setProductSelected(0.65);
+        assertEquals("PRICE $0.65", display.getMessage());
+        assertEquals("INSERT COIN", display.getMessage());
+    }
 }

@@ -3,6 +3,7 @@
 // @file Display.java
 ///////////////////////
 package VendingMachine;
+import java.text.DecimalFormat;
 
 /////////////////////////////////////////////////////////////////////////////
 // @class Display
@@ -14,9 +15,16 @@ package VendingMachine;
 /////////////////////////////////////////////////////////////////////////////
 public class Display {
 
+    //With appropriate use, only one of these flags should be true at a time
+    //may want to add a check for this and change void setters to bool indicating
+    //an error case
+
     boolean ChangeAvailable, // @var indicates if return change is available
             ProductVended,   // @var indicates that a product was vended
-            ProductSoldOut;  // @var indicates that a selected product is sold out
+            ProductSoldOut,  // @var indicates that a selected product is sold out
+            ProductSelected; // @var indicates that an available product was selected
+
+    double ProductPrice; // @var price of selected product
 
     /////////////////////////////////////////////////////////////////////////////
     // @brief Default Constructor
@@ -25,14 +33,20 @@ public class Display {
     /////////////////////////////////////////////////////////////////////////////
     public Display(boolean changeAvailable){
         ChangeAvailable = changeAvailable;
-        ProductVended = ProductSoldOut = false;
+        ProductVended = ProductSoldOut = ProductSelected = false;
+        ProductPrice = 0.0;
     }
 
     /////////////////////////////////////////////////////////////////////////////
     // @brief Returns string containing the message to display to customer
     /////////////////////////////////////////////////////////////////////////////
     public String getMessage(){
-        if(ProductVended){
+        if(ProductSelected){
+            ProductSelected = false;
+            DecimalFormat currencyFormater = new DecimalFormat("#.##");
+            return("PRICE $" + currencyFormater.format(ProductPrice));
+        }
+        else if(ProductVended){
             ProductVended = false; //reset flag once message has been displayed
             return("THANK YOU");
         }
@@ -66,10 +80,20 @@ public class Display {
     }
 
     /////////////////////////////////////////////////////////////////////////////
-    // @brief Sets product sold out flag to tru
+    // @brief Sets product sold out flag to true
     /////////////////////////////////////////////////////////////////////////////
     public void setProductSoldOut(){
         ProductSoldOut = true;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////
+    // @brief Sets product selected flag to true
+    // @params productPrice price to display
+    /////////////////////////////////////////////////////////////////////////////
+    public void setProductSelected(double productPrice)
+    {
+        ProductSelected = true;
+        ProductPrice = productPrice;
     }
 
 }
