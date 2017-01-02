@@ -103,6 +103,11 @@ public class Display {
         ProductPrice = productPrice;
     }
 
+    /////////////////////////////////////////////////////////////////////////////
+    // @brief Updates the amount of available currency that is displayed
+    //        NOTE: This assumes currency amount was validated by caller
+    // @params amount Amount of currency added
+    /////////////////////////////////////////////////////////////////////////////
     public void coinInserted(double amount)
     {
         AmountAvailable += amount;
