@@ -12,6 +12,9 @@ import java.text.DecimalFormat;
 //        on a periodic schedule to update the display, allowing the message
 //        to be reset to one of the two defaults using straight forward logic
 //        and minimal interaction.
+//
+//        Other classes maintaining state information about the vending machine
+//        will interact with Display to provide state change information
 /////////////////////////////////////////////////////////////////////////////
 public class Display {
 
