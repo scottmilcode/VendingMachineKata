@@ -139,6 +139,15 @@ public class InsertedCoinsTest {
         assertEquals(0.0, insertedCoins.insertCoin(12.0,  1.8)); //insert invalid coin
         assertEquals(0.10, insertedCoins.getAmountAvailableForPurchase());
     }
+
+    @Test
+    public void resetCoinsClearedClearsAmountAvailableForPurchase(){
+        display = new Display(true); //setup display with return change available
+        insertedCoins = new InsertedCoins(display); //passing display object to update
+        assertEquals(0.10, insertedCoins.insertCoin(17.9, 2.3)); //insert a dime
+        insertedCoins.resetAmountAvailableForPurchase();
+        assertEquals(0.0, insertedCoins.getAmountAvailableForPurchase());
+    }
 }
 
 

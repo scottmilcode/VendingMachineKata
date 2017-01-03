@@ -14,6 +14,10 @@ package VendingMachine;
 //        At current all classes directly interface with the display
 //        when state changes that need to be communicated to the user occur.
 //
+//        Class only tracks coins that woudl be in a 'hold' before being
+//        sent to a collection tray after a purchase or the coin return.
+//        It is not concerned with those specific operations.
+//
 // Coin Data
 //  Coins are evaluated based on weight and size (diameter).  It is assumed
 //  that the vending machine's mechanical system supports provided this
@@ -114,7 +118,25 @@ public class InsertedCoins {
         return(returnValue);
     }
 
+    /////////////////////////////////////////////////////////////////////////////
+    // @brief Provides access to the tracked total value of vaild coins
+    // @returns Returns total amount available in dollars
+    /////////////////////////////////////////////////////////////////////////////
     public double getAmountAvailableForPurchase(){
         return TotalAmountAvailable;
     }
+
+    /////////////////////////////////////////////////////////////////////////////
+    // @brief Resets the total amount available for purchase.  This would be
+    //        called after a purchase is made and coins are deposited in
+    //        in a collection tray, or after a return is requested and coins are
+    //        sent to the coin return.
+    /////////////////////////////////////////////////////////////////////////////
+    public void resetAmountAvailableForPurchase(){
+        TotalAmountAvailable = 0.0;
+    }
+
+
+
+
 }
