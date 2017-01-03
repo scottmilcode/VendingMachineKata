@@ -75,7 +75,7 @@ public class InsertedCoinsTest {
     public void insertingAQuarterOfMaxWeightAndSizeShouldReturnTwentyFiveCentValueAndDisplayShouldUpdate() {
         display = new Display(true); //setup display with return change available
         insertedCoins = new InsertedCoins(display); //passing display object to update
-        assertEquals(0.25, insertedCoins.insertCoin(24.3, 5.7));
+        assertEquals(0.25, insertedCoins.insertCoin(24.3,5.7));  //insert a dime
         assertEquals("$0.25", display.getMessage());
     }
 
@@ -102,6 +102,42 @@ public class InsertedCoinsTest {
         insertedCoins = new InsertedCoins(display); //passing display object to update
         assertEquals(0.0, insertedCoins.insertCoin(12.0,  1.8));
         assertEquals("INSERT COIN", display.getMessage());
+    }
+
+    //Coin Storage/Return/Use Tests
+
+    @Test
+    public void getTotalAmountReturnsTotalValueOfValidCoinsWhenNoCoinsInserted(){
+        display = new Display(true); //setup display with return change available
+        insertedCoins = new InsertedCoins(display); //passing display object to update
+        assertEquals(0.0, insertedCoins.getAmountAvailableForPurchase());
+    }
+
+
+    @Test
+    public void getTotalAmountReturnsTotalValueOfValidCoinsAfterOneCoinInserted(){
+        display = new Display(true); //setup display with return change available
+        insertedCoins = new InsertedCoins(display); //passing display object to update
+        assertEquals(0.10, insertedCoins.insertCoin(17.9, 2.3)); //insert a dime
+        assertEquals(0.10, insertedCoins.getAmountAvailableForPurchase());
+    }
+
+    @Test
+    public void getTotalAmountReturnsTotalValueOfValidCoinsAfterMultipleCoinsInserted(){
+        display = new Display(true); //setup display with return change available
+        insertedCoins = new InsertedCoins(display); //passing display object to update
+        assertEquals(0.10, insertedCoins.insertCoin(17.9, 2.3));  //insert a dime
+        assertEquals(0.25, insertedCoins.insertCoin(23, 5.4)); //insert a quarter
+        assertEquals(0.35, insertedCoins.getAmountAvailableForPurchase());
+    }
+
+    @Test
+    public void getTotalAmountReturnsTotalValueOfValidCoinsAfterMultipleCoinsInsertedAndInvalidCoinInserted(){
+        display = new Display(true); //setup display with return change available
+        insertedCoins = new InsertedCoins(display); //passing display object to update
+        assertEquals(0.10, insertedCoins.insertCoin(17.9, 2.3)); //insert a dime
+        assertEquals(0.0, insertedCoins.insertCoin(12.0,  1.8)); //insert invalid coin
+        assertEquals(0.10, insertedCoins.getAmountAvailableForPurchase());
     }
 }
 

@@ -79,6 +79,7 @@ public class InsertedCoins {
 
 
     Display TheDisplay; // @var Display object being interfaced with
+    private double TotalAmountAvailable; // @var Stores the total value of valid coins that can be used for a purchase
 
     /////////////////////////////////////////////////////////////////////////////
     // @brief Default Constructor
@@ -108,6 +109,12 @@ public class InsertedCoins {
         if(0 < returnValue){ //This check technically isn't necessary with the design of Dispaly.coinInserted() but an extra safety.
             TheDisplay.coinInserted(returnValue); //Send information about state change to display class
         }
+
+        TotalAmountAvailable += returnValue;
         return(returnValue);
+    }
+
+    public double getAmountAvailableForPurchase(){
+        return TotalAmountAvailable;
     }
 }
