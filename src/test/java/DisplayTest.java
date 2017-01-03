@@ -5,14 +5,12 @@
 
 package VendingMachine;
 import org.junit.Test;
-import org.junit.Before;
 import static junit.framework.TestCase.assertEquals;
 
 
 public class DisplayTest {
     Display display; //Display object used for testing
 
-   //Default message test cases
     @Test
     public void afterInitializationWithTrueGetMessageReturnsInsertCoin() {
         display = new Display(true);
