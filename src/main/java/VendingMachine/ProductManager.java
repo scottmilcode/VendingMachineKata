@@ -32,6 +32,7 @@ public class ProductManager {
         //Getters and Setters
         public int getCount(){ return(Count); }
         public void setCount(int count){ Count = count; }
+        public void removeProduct(){ Count--; }
         public double getPrice(){ return(Price); }
     }
 
@@ -75,7 +76,29 @@ public class ProductManager {
                 }
             }
         }
-
         return(-1); //case of product not found (error case)
     }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // @brief Removes one product from inventory
+    // @params productName - name of product being queried
+    // @returns If a product is available it's quanitity is reduced by 1 and true
+    //          is returned. If a product is sold out or doesn't exists (invalid name)
+    //          false is returned
+    /////////////////////////////////////////////////////////////////////////////
+    public boolean removeProduct(String productName){
+        for (Product p : Product.values()) {
+            if(productName == p.name()) {
+                if(p.getCount() > 0) {
+                    p.removeProduct();
+                    return(true);
+                }
+                else {
+                    return (false); //if none in stock return a false for error case
+                }
+            }
+        }
+        return(false); //case of product not found (error case)
+    }
+
 }

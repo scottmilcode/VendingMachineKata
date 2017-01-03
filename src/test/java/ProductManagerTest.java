@@ -30,6 +30,28 @@ public class ProductManagerTest {
         assertEquals(0.0, productManager.getCountOrPrice("CANDY"));
     }
 
+    @Test
+    public void getCountOrPriceReturnsNegativeOneForInvalidProduct(){
+        ProductManager productManager = new ProductManager(0, 0, 0);
+        assertEquals(-1.0, productManager.getCountOrPrice("BADPRODCUT"));
+    }
 
+    @Test
+    public void afterASingleProductIsRemovedGetCountOfPriceReturnsNoPriceForSoldOut(){
+        ProductManager productManager = new ProductManager(1, 1, 1);
+        assertEquals(true, productManager.removeProduct("COLA"));
+        assertEquals(0.0, productManager.getCountOrPrice("COLA"));
+    }
 
+    @Test
+    public void removeProductReturnsFalseForAnInvalidProduct(){
+        ProductManager productManager = new ProductManager(1, 1, 1);
+        assertEquals(false, productManager.removeProduct("BADPRODUCT"));
+    }
+
+    @Test
+    public void removeProductReturnsFalseForAProductThatIsOutOfStock(){
+        ProductManager productManager = new ProductManager(0, 1, 1);
+        assertEquals(false, productManager.removeProduct("COLA"));
+    }
 }
