@@ -25,7 +25,7 @@ public class ProductManager {
         CANDY (0.65);
 
         private double Price; // in dollars
-        private int Count; // how many are available for sale
+        private int Quantity; // how many are available for sale
 
         ////////////////////////////////////////////////////////////////////////////
         // @brief Default Constructor
@@ -35,10 +35,10 @@ public class ProductManager {
         }
 
         //Getters and Setters
-        public int getCount(){ return(Count); }
-        public void setCount(int count){ Count = count; }
-        public void removeProduct(){ Count--; }
-        public void addProduct(){ Count++; }
+        public int getQuantity(){ return(Quantity); }
+        public void setQuantity(int quantity){ Quantity = quantity; }
+        public void removeProduct(){ Quantity--; }
+        public void addProduct(){ Quantity++; }
         public double getPrice(){ return(Price); }
     }
 
@@ -54,13 +54,13 @@ public class ProductManager {
         for (Product p : Product.values())
         {
             if("COLA" == p.name()) {
-                p.setCount(numCola);
+                p.setQuantity(numCola);
             }
             else if("CHIPS" == p.name()) {
-                p.setCount(numChips);
+                p.setQuantity(numChips);
             }
             else if("CANDY" == p.name()) {
-                p.setCount(numCandy);
+                p.setQuantity(numCandy);
             }
         }
     }
@@ -71,10 +71,10 @@ public class ProductManager {
     // @returns If a product is available it's price, else 0 indicating the
     //          product is sold out. If an invalid productName is provided -1
     /////////////////////////////////////////////////////////////////////////////
-    public double getCountOrPrice(String productName){
+    public double getQuantityOrPrice(String productName){
         for (Product p : Product.values()) {
             if(productName == p.name()) {
-                if(p.getCount() > 0) {
+                if(p.getQuantity() > 0) {
                     return (p.getPrice());
                 }
                 else {
@@ -95,7 +95,7 @@ public class ProductManager {
     public boolean removeProduct(String productName){
         for (Product p : Product.values()) {
             if(productName == p.name()) {
-                if(p.getCount() > 0) {
+                if(p.getQuantity() > 0) {
                     p.removeProduct();
                     return(true);
                 }

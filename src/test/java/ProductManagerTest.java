@@ -15,32 +15,32 @@ import static junit.framework.TestCase.assertEquals;
 public class ProductManagerTest {
 
     @Test
-    public void atInitializationProductManagerAcceptsInitialInventoryAndConfirms(){
+    public void atInitializationProductManagerAcceptsInitialInventoryAndGetQuantityOrPriceConfirms(){
         ProductManager productManager = new ProductManager(1, 1, 1);
-        assertEquals(1.00, productManager.getCountOrPrice("COLA"));
-        assertEquals(0.50, productManager.getCountOrPrice("CHIPS"));
-        assertEquals(0.65, productManager.getCountOrPrice("CANDY"));
+        assertEquals(1.00, productManager.getQuantityOrPrice("COLA"));
+        assertEquals(0.50, productManager.getQuantityOrPrice("CHIPS"));
+        assertEquals(0.65, productManager.getQuantityOrPrice("CANDY"));
     }
 
     @Test
-    public void atInitializationProductManagerAcceptsEmptyInitialInventoryAndConfirmsNoPriceForSoldOut(){
+    public void atInitializationProductManagerAcceptsEmptyInitialInventoryAndGetQuantityOrPriceConfirmsNoPriceForSoldOut(){
         ProductManager productManager = new ProductManager(0, 0, 0);
-        assertEquals(0.0, productManager.getCountOrPrice("COLA"));
-        assertEquals(0.0, productManager.getCountOrPrice("CHIPS"));
-        assertEquals(0.0, productManager.getCountOrPrice("CANDY"));
+        assertEquals(0.0, productManager.getQuantityOrPrice("COLA"));
+        assertEquals(0.0, productManager.getQuantityOrPrice("CHIPS"));
+        assertEquals(0.0, productManager.getQuantityOrPrice("CANDY"));
     }
 
     @Test
-    public void getCountOrPriceReturnsNegativeOneForInvalidProduct(){
+    public void getQuantityOrPriceReturnsNegativeOneForInvalidProduct(){
         ProductManager productManager = new ProductManager(0, 0, 0);
-        assertEquals(-1.0, productManager.getCountOrPrice("BADPRODCUT"));
+        assertEquals(-1.0, productManager.getQuantityOrPrice("BADPRODCUT"));
     }
 
     @Test
     public void afterASingleProductIsRemovedGetCountOrPriceReturnsNoPriceForSoldOut(){
         ProductManager productManager = new ProductManager(1, 1, 1);
         assertEquals(true, productManager.removeProduct("COLA"));
-        assertEquals(0.0, productManager.getCountOrPrice("COLA"));
+        assertEquals(0.0, productManager.getQuantityOrPrice("COLA"));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class ProductManagerTest {
     public void afterASingleProductIsAddedGetCountOrPriceReturnsPriceForItem(){
         ProductManager productManager = new ProductManager(0, 0, 0);
         assertEquals(true, productManager.addProduct("COLA"));
-        assertEquals(1.00, productManager.getCountOrPrice("COLA"));
+        assertEquals(1.00, productManager.getQuantityOrPrice("COLA"));
     }
 
     @Test
