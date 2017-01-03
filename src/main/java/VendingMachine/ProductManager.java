@@ -73,7 +73,7 @@ public class ProductManager {
     /////////////////////////////////////////////////////////////////////////////
     public double getQuantityOrPrice(String productName){
         for (Product p : Product.values()) {
-            if(productName == p.name()) {
+            if(p.name() == productName) {
                 if(p.getQuantity() > 0) {
                     return (p.getPrice());
                 }
@@ -94,7 +94,7 @@ public class ProductManager {
     /////////////////////////////////////////////////////////////////////////////
     public boolean removeProduct(String productName){
         for (Product p : Product.values()) {
-            if(productName == p.name()) {
+            if(p.name() == productName) {
                 if(p.getQuantity() > 0) {
                     p.removeProduct();
                     return(true);
@@ -110,13 +110,13 @@ public class ProductManager {
     ////////////////////////////////////////////////////////////////////////////
     // @brief Adds one product from inventory
     // @params productName - name of product being queried
-    // @returns If a product is available it's quanitity is increased by 1 and true
+    // @returns If a product is available it's quantity is increased by 1 and true
     //          is returned. If a product is sold out or doesn't exists (invalid name)
     //          false is returned
     /////////////////////////////////////////////////////////////////////////////
     public boolean addProduct(String productName){
         for (Product p : Product.values()) {
-            if(productName == p.name()) {
+            if(p.name() == productName) {
                 p.addProduct();
                 return(true);
             }
