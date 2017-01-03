@@ -42,12 +42,13 @@ public class Display {
     }
 
     /////////////////////////////////////////////////////////////////////////////
-    // @brief Returns string containing the message to display to customer
+    // @brief Used to attain message the should be placed on customer display
+    // @returns Returns string containing the message to display to customer
     /////////////////////////////////////////////////////////////////////////////
     public String getMessage(){
         if(ProductSelected){
             ProductSelected = false;
-            DecimalFormat currencyFormater = new DecimalFormat("#.##");
+            DecimalFormat currencyFormater = new DecimalFormat("0.00");
             return("PRICE $" + currencyFormater.format(ProductPrice));
         }
         else if(ProductVended){
@@ -58,9 +59,9 @@ public class Display {
             ProductSoldOut = false; //reset flag once message has been displayed
             return("SOLD OUT");
         }
-        else if(0 < AmountAvailable)
+        else if(0 < AmountAvailable) //Display total valid amount inserted so far
         {
-            DecimalFormat currencyFormater = new DecimalFormat("#.##");
+            DecimalFormat currencyFormater = new DecimalFormat("0.00");
             return("$" + currencyFormater.format(AmountAvailable));
         }
         else if(ChangeAvailable){

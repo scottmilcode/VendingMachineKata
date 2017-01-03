@@ -69,6 +69,13 @@ public class DisplayTest {
     }
 
     @Test
+    public void whenDimeInsertedGetMessageReturnsTotalAmountAvailableForPurchaseWithProperNumberOfDecimalPlaces(){
+        display = new Display(true);
+        display.coinInserted(0.10);
+        assertEquals("$0.10", display.getMessage());
+    }
+
+    @Test
     public void whenChangeInsertedGetMessageReturnsTotalAmountAvailableForPurchase(){
         display = new Display(true);
         display.coinInserted(0.05);

@@ -37,6 +37,8 @@ public class InsertedCoinsTest {
     InsertedCoins insertedCoins; //InsertedCoins object to use for testing
     Display display; //Display object used for testing
 
+    //Coin Insertion Tests
+
     @Test
     public void insertingANickelOfMaxWeightAndSizeShouldReturnFiveCentValueAndDisplayShouldUpdate() {
         display = new Display(true); //setup display with return change available
@@ -91,6 +93,14 @@ public class InsertedCoinsTest {
         display = new Display(true); //setup display with return change available
         insertedCoins = new InsertedCoins(display); //passing display object to update
         assertEquals(0.0, insertedCoins.insertCoin(18.0,  2.4));
+        assertEquals("INSERT COIN", display.getMessage());
+    }
+
+    @Test //Test to make sure a small penny isn't confused for a large dime
+    public void insertingARandomInvalidCoinShouldReturnZeroCentValueAndDisplayShouldNotUpdate() {
+        display = new Display(true); //setup display with return change available
+        insertedCoins = new InsertedCoins(display); //passing display object to update
+        assertEquals(0.0, insertedCoins.insertCoin(12.0,  1.8));
         assertEquals("INSERT COIN", display.getMessage());
     }
 }
