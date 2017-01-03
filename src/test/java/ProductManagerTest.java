@@ -37,7 +37,7 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void afterASingleProductIsRemovedGetCountOfPriceReturnsNoPriceForSoldOut(){
+    public void afterASingleProductIsRemovedGetCountOrPriceReturnsNoPriceForSoldOut(){
         ProductManager productManager = new ProductManager(1, 1, 1);
         assertEquals(true, productManager.removeProduct("COLA"));
         assertEquals(0.0, productManager.getCountOrPrice("COLA"));
@@ -50,8 +50,16 @@ public class ProductManagerTest {
     }
 
     @Test
-    public void removeProductReturnsFalseForAProductThatIsOutOfStock(){
-        ProductManager productManager = new ProductManager(0, 1, 1);
-        assertEquals(false, productManager.removeProduct("COLA"));
+    public void afterASingleProductIsAddedGetCountOrPriceReturnsPriceForItem(){
+        ProductManager productManager = new ProductManager(0, 0, 0);
+        assertEquals(true, productManager.addProduct("COLA"));
+        assertEquals(1.00, productManager.getCountOrPrice("COLA"));
     }
+
+    @Test
+    public void addProductReturnsFalseForAnInvalidProduct(){
+        ProductManager productManager = new ProductManager(1, 1, 1);
+        assertEquals(false, productManager.addProduct("BADPRODUCT"));
+    }
+
 }

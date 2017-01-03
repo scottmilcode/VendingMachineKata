@@ -4,7 +4,12 @@
 ///////////////////////////////
 package VendingMachine;
 
-
+/////////////////////////////////////////////////////////////////////////////
+// @class ProductManager
+// @brief Tracks inventory and price of products available for sale
+//        also allows items to be manually added to machine.  Currently
+//        does not account for any maximum limit on inventory.
+/////////////////////////////////////////////////////////////////////////////
 public class ProductManager {
 
     /////////////////////////////////////////////////////////////////////////////
@@ -33,6 +38,7 @@ public class ProductManager {
         public int getCount(){ return(Count); }
         public void setCount(int count){ Count = count; }
         public void removeProduct(){ Count--; }
+        public void addProduct(){ Count++; }
         public double getPrice(){ return(Price); }
     }
 
@@ -101,4 +107,20 @@ public class ProductManager {
         return(false); //case of product not found (error case)
     }
 
+    ////////////////////////////////////////////////////////////////////////////
+    // @brief Adds one product from inventory
+    // @params productName - name of product being queried
+    // @returns If a product is available it's quanitity is increased by 1 and true
+    //          is returned. If a product is sold out or doesn't exists (invalid name)
+    //          false is returned
+    /////////////////////////////////////////////////////////////////////////////
+    public boolean addProduct(String productName){
+        for (Product p : Product.values()) {
+            if(productName == p.name()) {
+                p.addProduct();
+                return(true);
+            }
+        }
+        return(false); //case of product not found (error case)
+    }
 }
