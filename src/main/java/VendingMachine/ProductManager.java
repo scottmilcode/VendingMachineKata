@@ -4,6 +4,8 @@
 ///////////////////////////////
 package VendingMachine;
 
+import java.util.ArrayList;
+
 /////////////////////////////////////////////////////////////////////////////
 // @class ProductManager
 // @brief Tracks inventory and price of products available for sale
@@ -122,5 +124,21 @@ public class ProductManager {
             }
         }
         return(false); //case of product not found (error case)
+    }
+
+    ////////////////////////////////////////////////////////////////////////////
+    // @brief Returns list of prices for products that are available
+    // @returns ArrayList of Doubles containing prices of products
+    /////////////////////////////////////////////////////////////////////////////
+    public ArrayList<Double> getPricesOfAvailableProducts(){
+        ArrayList<Double> prices = new ArrayList<Double>();
+
+        for (Product p : Product.values()) {
+            if (p.getQuantity() > 0) {
+                prices.add(p.getPrice());
+            }
+        }
+
+        return(prices);
     }
 }

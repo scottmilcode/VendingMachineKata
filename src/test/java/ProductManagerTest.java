@@ -5,15 +5,10 @@
 
 package VendingMachine;
 import org.junit.Test;
+import java.util.ArrayList;
 import static junit.framework.TestCase.assertEquals;
 
-/////////////////////////////////////////////////////////////////////////////
-// @class ProductManager
-// @brief This class handles product inventory including prices and how
-//        many of each product are available.
-/////////////////////////////////////////////////////////////////////////////
 public class ProductManagerTest {
-
     @Test
     public void atInitializationProductManagerAcceptsInitialInventoryAndGetQuantityOrPriceConfirms(){
         ProductManager productManager = new ProductManager(1, 1, 1);
@@ -62,4 +57,31 @@ public class ProductManagerTest {
         assertEquals(false, productManager.addProduct("BADPRODUCT"));
     }
 
+    @Test
+    public void getPricesOfAvailableProductsReturnsEmptyListWhenSoldOutOfAllProducts(){
+        ProductManager productManager = new ProductManager(0, 0, 0);
+        assertEquals(0, productManager.getPricesOfAvailableProducts().size());
+    }
+
+    @Test
+    public void getPricesOfAvailableProductsReturnsPartialListOfPricesWhenOnlySomeProductsAreAvailable(){
+        ArrayList<Double> prices;
+        ProductManager productManager = new ProductManager(1, 0, 0);
+        prices = productManager.getPricesOfAvailableProducts();
+
+        assertEquals(1, prices.size()); //should be three items
+        assertEquals(true, prices.contains(1.0)); //should contain a $1 price
+    }
+
+    @Test
+    public void getPricesOfAvailableProductsReturnsListOfThreePricesWhenAllProductsAreAvailable(){
+        ArrayList<Double> prices;
+        ProductManager productManager = new ProductManager(1, 1, 1);
+        prices = productManager.getPricesOfAvailableProducts();
+
+        assertEquals(3, prices.size()); //should be three items
+        assertEquals(true, prices.contains(1.0)); //should contain a $1 price
+        assertEquals(true, prices.contains(0.5)); //should contain a $0.5 price
+        assertEquals(true, prices.contains(0.65)); //should contain a $0.65 price
+    }
 }
