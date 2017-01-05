@@ -17,7 +17,7 @@ package VendingMachine;
 //
 // Coin Data
 //  Coins are evaluated based on weight and size (diameter).  It is assumed
-//  that the vending machine's mechanical system supports provided this
+//  that the vending machine's mechanical system provideds this
 //  information using SI units.  We also assume the mechanism is extremely
 //  if not perfectly accurate, providing one digit of significance.
 //  If not, the tolerance of the measuring  mechanism would need to be
@@ -27,7 +27,7 @@ package VendingMachine;
 //  As coins are made to rather exacting specifications we expect that no
 //  coin will be heavier or larger than its initial size.  Coins are
 //  expected to wear with use.  As such, coins with slightly lower weights
-//  and smaller diameters should be accepted.  In an idea world this data
+//  and smaller diameters should be accepted.  In an ideal world this data
 //  would be driven by a measured distribution of coin weights/sizes, but for
 //  our purposes we will accept coins up to -5% of original weight/size.
 //  Basic calculations show that this value appears to be very reasonable.
@@ -39,7 +39,7 @@ package VendingMachine;
 //  dime	17.9   2.3	17.0  2.2
 //  quarter	24.3   5.7	23.0  5.4
 /////////////////////////////////////////////////////////////////////////////
-public class InsertedCoins {
+public class InsertedCoins{
 
     /////////////////////////////////////////////////////////////////////////////
     // @class Coin
@@ -53,11 +53,11 @@ public class InsertedCoins {
         DIME    (10, 17.9, 2.3, 17.0, 2.2),
         QUARTER (25, 24.3, 5.7, 23.0, 5.4);
 
-        private final int Value; // in cents
-        private final double MinWeight; // in grams
-        private final double MaxWeight; // in grams
-        private final double MinDiameter; // in millimeters
-        private final double MaxDiameter; // in millimeters
+        private final int Value; //@var value in cents
+        private final double MinWeight; //@var minimum weight in grams
+        private final double MaxWeight; //@var maximum weight in grams
+        private final double MinDiameter; //@var minimum diameter in millimeters
+        private final double MaxDiameter; //@var maximum diameter in millimeters
 
         /////////////////////////////////////////////////////////////////////////////
         // @brief Default Constructor

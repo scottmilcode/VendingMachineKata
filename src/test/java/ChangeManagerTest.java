@@ -4,11 +4,21 @@
 ///////////////////////////////
 package VendingMachine;
 import org.junit.Test;
+import org.junit.Before;
 import java.util.ArrayList;
 import static junit.framework.TestCase.assertEquals;
 
 
-public class ChangeManagerTest {
+public class ChangeManagerTest{
+    ArrayList<Integer> productPrices; //@var productPrice array list to use for testing
+
+    @Before
+    public void setup() {
+        productPrices = new ArrayList<Integer>();
+        productPrices.add(100);
+        productPrices.add(65);
+        productPrices.add(50);
+    }
 
     //All tests for correct change assume that the lowest number of coins based on available
     //change will be returned.
@@ -103,102 +113,56 @@ public class ChangeManagerTest {
     @Test
     public void whenNoChangeCoinsInMachineIsChangeAvailableReturnsFalse(){
         ChangeManager changeManager = new ChangeManager(0, 0, 0);
-        ArrayList<Integer> productPrices = new ArrayList<Integer>();
-        productPrices.add(100);
-        productPrices.add(65);
-        productPrices.add(50);
-
         assertEquals(false, changeManager.isChangeAvailable(productPrices));
     }
 
     @Test
     public void whenLotsOfChangeCoinsInMachineIsChangeAvailableReturnsTrue(){
         ChangeManager changeManager = new ChangeManager(10, 10, 10);
-        ArrayList<Integer> productPrices = new ArrayList<Integer>();
-        productPrices.add(100);
-        productPrices.add(65);
-        productPrices.add(50);
-
         assertEquals(true, changeManager.isChangeAvailable(productPrices));
     }
 
     @Test
     public void whenEnoughNickelsAsChangeCoinsInMachineAndNoOthersIsChangeAvailableReturnsTrue(){
         ChangeManager changeManager = new ChangeManager(14, 0, 0);
-        ArrayList<Integer> productPrices = new ArrayList<Integer>();
-        productPrices.add(100);
-        productPrices.add(65);
-        productPrices.add(50);
-
         assertEquals(true, changeManager.isChangeAvailable(productPrices));
     }
 
     @Test
     public void whenOnlyQuatersAsChangeCoinsInMachineAndNoOthersIsChangeAvailableReturnsFalse(){
         ChangeManager changeManager = new ChangeManager(0, 0, 10);
-        ArrayList<Integer> productPrices = new ArrayList<Integer>();
-        productPrices.add(100);
-        productPrices.add(65);
-        productPrices.add(50);
-
         assertEquals(false, changeManager.isChangeAvailable(productPrices));
     }
 
     @Test
     public void whenOnlyDimesAsChangeCoinsInMachineAndNoOthersIsChangeAvailableReturnsFalse(){
         ChangeManager changeManager = new ChangeManager(0, 10, 0);
-        ArrayList<Integer> productPrices = new ArrayList<Integer>();
-        productPrices.add(100);
-        productPrices.add(65);
-        productPrices.add(50);
-
         assertEquals(false, changeManager.isChangeAvailable(productPrices));
     }
 
     @Test
     public void whenOnlyDimesAndQuartersAsChangeCoinsInMachineAndNoOthersIsChangeAvailableReturnsFalse(){
         ChangeManager changeManager = new ChangeManager(0, 10, 10);
-        ArrayList<Integer> productPrices = new ArrayList<Integer>();
-        productPrices.add(100);
-        productPrices.add(65);
-        productPrices.add(50);
-
         assertEquals(false, changeManager.isChangeAvailable(productPrices));
     }
 
     @Test
     public void whenOnlyOneOfEachCoinAsChangeCoinsInMachineIsChangeAvailableReturnsFalse(){ //corner case here is needing 20 cents
         ChangeManager changeManager = new ChangeManager(1, 1, 1);
-        ArrayList<Integer> productPrices = new ArrayList<Integer>();
-        productPrices.add(100);
-        productPrices.add(65);
-        productPrices.add(50);
-
         assertEquals(false, changeManager.isChangeAvailable(productPrices));
     }
 
     @Test
     public void whenChangeIsMadeCoinsAvailableShouldReduceMakingIsChangeAvailableReturnsFalse(){ //corner case here is needing 20 cents
         ChangeManager changeManager = new ChangeManager(2, 2, 2);
-        ArrayList<Integer> productPrices = new ArrayList<Integer>();
-        ArrayList<Integer> returnChange = new ArrayList<Integer>();
-        productPrices.add(100);
-        productPrices.add(65);
-        productPrices.add(50);
-
         assertEquals(true, changeManager.isChangeAvailable(productPrices));
-        assertEquals(true, changeManager.makeChange(100, 120, returnChange)); //should remove two dimes
+        assertEquals(true, changeManager.makeChange(100, 120, new ArrayList<Integer>())); //should remove two dimes
         assertEquals(false, changeManager.isChangeAvailable(productPrices));
     }
 
     @Test
     public void whenChangeIsAvailableCheckingForChangeRepeatedlyShouldAlwaysReturnTrue(){ //corner case here is needing 20 cents
         ChangeManager changeManager = new ChangeManager(2, 2, 2);
-        ArrayList<Integer> productPrices = new ArrayList<Integer>();
-        ArrayList<Integer> returnChange = new ArrayList<Integer>();
-        productPrices.add(100);
-        productPrices.add(65);
-        productPrices.add(50);
 
         assertEquals(true, changeManager.isChangeAvailable(productPrices));
         assertEquals(true, changeManager.isChangeAvailable(productPrices));

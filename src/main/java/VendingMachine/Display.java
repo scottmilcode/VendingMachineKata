@@ -12,11 +12,8 @@ import java.text.DecimalFormat;
 //        on a periodic schedule to update the display, allowing the message
 //        to be reset to one of the two defaults using straight forward logic
 //        and minimal interaction.
-//
-//        Other classes maintaining state information about the vending machine
-//        will interact with Display to provide state change information
 /////////////////////////////////////////////////////////////////////////////
-public class Display {
+public class Display{
 
     //With appropriate use, only one of these flags should be true at a time
     //may want to add a check for this and change void setters to bool indicating
@@ -83,6 +80,7 @@ public class Display {
     //                           true if change is available, false if not
     /////////////////////////////////////////////////////////////////////////////
     public void setChangeAvailable(boolean changeAvailable){
+
         ChangeAvailable = changeAvailable;
     }
 
@@ -105,8 +103,7 @@ public class Display {
     // @brief Sets product selected flag to true
     // @params productPrice price to display
     /////////////////////////////////////////////////////////////////////////////
-    public void setProductSelected(int productPrice)
-    {
+    public void setProductSelected(int productPrice){
         ProductSelected = true;
         ProductPrice = productPrice;
     }
@@ -116,9 +113,7 @@ public class Display {
     //        NOTE: This assumes currency amount was validated by caller
     // @params amount Amount of currency added
     /////////////////////////////////////////////////////////////////////////////
-    public void coinInserted(double amount)
-    {
+    public void coinInserted(double amount){
         AmountAvailable += amount/100; //convert from cents to dollars and save as a double for display formatting
     }
-
 }

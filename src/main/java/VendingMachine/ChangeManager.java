@@ -25,9 +25,9 @@ import java.util.Collections;
 /////////////////////////////////////////////////////////////////////////////
 public class ChangeManager {
 
-    private int NumNickels,
-                NumDimes,
-                NumQuarters;
+    private int NumNickels, //@var number of Nickels available
+                NumDimes, //@var number of Dimes available
+                NumQuarters; //@var number of Quarters available
 
     ////////////////////////////////////////////////////////////////////////////
     // @brief Default Constructor
@@ -70,7 +70,7 @@ public class ChangeManager {
         boolean changeAvailable = true;
         returnChange.clear(); // should already be empty, but just in case
 
-        while(productPrice + returnChangeTotal < amountInserted && changeAvailable) {
+        while(productPrice + returnChangeTotal < amountInserted && changeAvailable){
             if(amountInserted - productPrice - returnChangeTotal >= 25 && NumQuarters > 0){ //see if we should/can return a quarter
                 returnChange.add(25); //indicate that a quarter should be returned
                 returnChangeTotal += 25;
@@ -92,8 +92,9 @@ public class ChangeManager {
             }
         }
         //At this point we've left the while loop because we made change or because we can't
-        if(testingForChange || !changeAvailable) //If we are testing, or we couldn't make change place coins back in inventory and return
-        {                                        //technically if the class is used properly we should never try to make change when it isn't available
+        //If we are testing, or we couldn't make change place coins back in inventory and return
+        //technically if the class is used properly we should never try to make change when it isn't available
+        if(testingForChange || !changeAvailable){
             for (Integer coin: returnChange){
                 if(25 == coin){
                     NumQuarters++;
@@ -110,7 +111,6 @@ public class ChangeManager {
             }
             returnChange.clear();
         }
-
         return(changeAvailable);
     }
 
@@ -154,8 +154,8 @@ public class ChangeManager {
         int startTestAmount = lowestPrice + 5; //again hard coded 5 cent denomination
         int stopTestAmount = highestPrice - 5 + 25; //again hard coded denominations
 
-        for(Integer productPrice: productPrices) { //loop through products
-            for (int testAmount = startTestAmount; testAmount <= stopTestAmount; testAmount += 5) { //loop through possible inserted amounts
+        for(Integer productPrice: productPrices){ //loop through products
+            for (int testAmount = startTestAmount; testAmount <= stopTestAmount; testAmount += 5){ //loop through possible inserted amounts
                if(! makeChange(productPrice, testAmount, new ArrayList<Integer>(), true)){
                    return(false);
                }

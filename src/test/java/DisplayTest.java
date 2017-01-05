@@ -2,50 +2,48 @@
 // @author Scott Miller
 // @file DisplayTest.java
 ///////////////////////
-
 package VendingMachine;
 import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 
-
-public class DisplayTest {
+public class DisplayTest{
     Display display; //Display object used for testing
 
     @Test
-    public void afterInitializationWithTrueGetMessageReturnsInsertCoin() {
+    public void afterInitializationWithTrueGetMessageReturnsInsertCoin(){
         display = new Display(true);
         assertEquals("INSERT COIN", display.getMessage());
     }
 
     @Test
-    public void afterInitializationWithFalseGetMessageReturnsInsertCoin() {
+    public void afterInitializationWithFalseGetMessageReturnsInsertCoin(){
         display = new Display(false);
         assertEquals("EXACT CHANGE ONLY", display.getMessage());
     }
 
     @Test
-    public void afterInitializationWithFalseAndSetChangeToTrueGetMessageReturnsInsertCoin() {
+    public void afterInitializationWithFalseAndSetChangeToTrueGetMessageReturnsInsertCoin(){
         display = new Display(false);
         display.setChangeAvailable(true);
         assertEquals("INSERT COIN", display.getMessage());
     }
 
     @Test
-    public void afterInitializationWithTrueAndSetChangeToFalseGetMessageReturnsInsertCoin() {
+    public void afterInitializationWithTrueAndSetChangeToFalseGetMessageReturnsInsertCoin(){
         display = new Display(true);
         display.setChangeAvailable(false);
         assertEquals("EXACT CHANGE ONLY", display.getMessage());
     }
 
     @Test
-    public void whenChangeAvailableGetMessageReturnsExactChangeOnly() {
+    public void whenChangeAvailableGetMessageReturnsInsertCoin(){
         display = new Display(false);
         display.setChangeAvailable(true);
         assertEquals("INSERT COIN", display.getMessage());
     }
 
     @Test
-    public void whenProductVendedAndChangeStillAvailableGetMessageReturnsThankYouFollowedByInsertCoin() {
+    public void whenProductVendedAndChangeStillAvailableGetMessageReturnsThankYouFollowedByInsertCoin(){
         display = new Display(true);
         display.setProductVended();
         assertEquals("THANK YOU", display.getMessage());
@@ -53,7 +51,7 @@ public class DisplayTest {
     }
 
     @Test
-    public void whenProductSoldOutAndChangeStillAvailableGetMessageReturnsProductSoldOutFollowedByInsertCoin() {
+    public void whenProductSoldOutAndChangeStillAvailableGetMessageReturnsProductSoldOutFollowedByInsertCoin(){
         display = new Display(true);
         display.setProductSoldOut();
         assertEquals("SOLD OUT", display.getMessage());
@@ -85,7 +83,7 @@ public class DisplayTest {
     }
 
     @Test
-    public void whenChangeInsertedGetMessageReturnsTotalAmountAvailableForPurchaseThenAfterPurchaseThankYouThenInsertCoin() {
+    public void whenChangeInsertedGetMessageReturnsTotalAmountAvailableForPurchaseThenAfterPurchaseThankYouThenInsertCoin(){
         display = new Display(true);
         display.coinInserted(5);
         assertEquals("$0.05", display.getMessage());

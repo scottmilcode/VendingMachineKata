@@ -3,7 +3,6 @@
 // @file ProductManager.java
 ///////////////////////////////
 package VendingMachine;
-
 import java.util.ArrayList;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -26,8 +25,8 @@ public class ProductManager {
         CHIPS (50),
         CANDY (65);
 
-        private int Price; // in dollars
-        private int Quantity; // how many are available for sale
+        private int Price; //@var price in dollars
+        private int Quantity; //@var how many are available for sale
 
         ////////////////////////////////////////////////////////////////////////////
         // @brief Default Constructor
@@ -55,13 +54,13 @@ public class ProductManager {
         // clearly states only three products will be used
         for (Product p : Product.values())
         {
-            if("COLA" == p.name()) {
+            if("COLA" == p.name()){
                 p.setQuantity(numCola);
             }
-            else if("CHIPS" == p.name()) {
+            else if("CHIPS" == p.name()){
                 p.setQuantity(numChips);
             }
-            else if("CANDY" == p.name()) {
+            else if("CANDY" == p.name()){
                 p.setQuantity(numCandy);
             }
         }
@@ -74,12 +73,12 @@ public class ProductManager {
     //          product is sold out. If an invalid productName is provided -1
     /////////////////////////////////////////////////////////////////////////////
     public int getQuantityOrPrice(String productName){
-        for (Product p : Product.values()) {
-            if(p.name() == productName) {
-                if(p.getQuantity() > 0) {
+        for (Product p : Product.values()){
+            if(p.name() == productName){
+                if(p.getQuantity() > 0){
                     return (p.getPrice());
                 }
-                else {
+                else{
                     return (0); //if none in stock return a zero price indicated sold out!
                 }
             }
@@ -95,13 +94,13 @@ public class ProductManager {
     //          false is returned
     /////////////////////////////////////////////////////////////////////////////
     public boolean removeProduct(String productName){
-        for (Product p : Product.values()) {
-            if(p.name() == productName) {
-                if(p.getQuantity() > 0) {
+        for (Product p : Product.values()){
+            if(p.name() == productName){
+                if(p.getQuantity() > 0){
                     p.removeProduct();
                     return(true);
                 }
-                else {
+                else{
                     return (false); //if none in stock return a false for error case
                 }
             }
@@ -110,15 +109,15 @@ public class ProductManager {
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    // @brief Adds one product from inventory
+    // @brief Adds one product to inventory
     // @params productName - name of product being queried
     // @returns If a product is available it's quantity is increased by 1 and true
-    //          is returned. If a product is sold out or doesn't exists (invalid name)
+    //          is returned. If a product doesn't exists (invalid name)
     //          false is returned
     /////////////////////////////////////////////////////////////////////////////
     public boolean addProduct(String productName){
-        for (Product p : Product.values()) {
-            if(p.name() == productName) {
+        for (Product p : Product.values()){
+            if(p.name() == productName){
                 p.addProduct();
                 return(true);
             }
@@ -133,12 +132,11 @@ public class ProductManager {
     public ArrayList<Integer> getPricesOfAvailableProducts(){
         ArrayList<Integer> prices = new ArrayList<Integer>();
 
-        for (Product p : Product.values()) {
-            if (p.getQuantity() > 0) {
+        for (Product p : Product.values()){
+            if (p.getQuantity() > 0){
                 prices.add(p.getPrice());
             }
         }
-
         return(prices);
     }
 }

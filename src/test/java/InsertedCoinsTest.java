@@ -2,7 +2,6 @@
 // @author Scott Miller
 // @file InsertedCoinsTest.java
 ///////////////////////
-
 package VendingMachine;
 import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
@@ -33,56 +32,56 @@ import static junit.framework.TestCase.assertEquals;
 //  quarter	24.3   5.7	23.0  5.4
 /////////////////////////////////////////////////////////////////////////////
 
-public class InsertedCoinsTest {
+public class InsertedCoinsTest{
     InsertedCoins insertedCoins; //InsertedCoins object to use for testing
 
     //Coin Insertion Tests
 
     @Test
-    public void insertingANickelOfMaxWeightAndSizeShouldReturnFiveCentValueAndDisplayShouldUpdate() {
+    public void insertingANickelOfMaxWeightAndSizeShouldReturnFiveCentValue(){
         insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(5, insertedCoins.insertCoin(21.2, 5));
     }
 
     @Test
-    public void insertingANickelOfMinWeightAndSizeShouldReturnFiveCentValueAndDisplayShouldUpdate() {
+    public void insertingANickelOfMinWeightAndSizeShouldReturnFiveCentValue(){
         insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(5, insertedCoins.insertCoin(20.1, 4.8));
     }
 
     @Test
-    public void insertingADimeOfMaxWeightAndSizeShouldReturnTenCentValueAndDisplayShouldUpdate() {
+    public void insertingADimeOfMaxWeightAndSizeShouldReturnTenCentValue(){
         insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(10, insertedCoins.insertCoin(17.9, 2.3));
     }
 
     @Test
-    public void insertingADimeOfMinWeightAndSizeShouldReturnTenCentValueAndDisplayShouldUpdate() {
+    public void insertingADimeOfMinWeightAndSizeShouldReturnTenCentValue(){
         insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(10, insertedCoins.insertCoin(17, 2.2));
     }
 
     @Test
-    public void insertingAQuarterOfMaxWeightAndSizeShouldReturnTwentyFiveCentValueAndDisplayShouldUpdate() {
+    public void insertingAQuarterOfMaxWeightAndSizeShouldReturnTwentyFiveCentValue(){
         insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(25, insertedCoins.insertCoin(24.3,5.7));  //insert a dime
     }
 
     @Test
-    public void insertingAQuarterOfMinWeightAndSizeShouldReturnTwentyFiveCentValueAndDisplayShouldUpdate() {
+    public void insertingAQuarterOfMinWeightAndSizeShouldReturnTwentyFiveCentValue(){
         insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(25, insertedCoins.insertCoin(23, 5.4));
     }
 
 
     @Test //Test to make sure a small penny isn't confused for a large dime
-    public void insertingAPennyOfMinWeightAndSizeShouldReturnZeroCentValueAndDisplayShouldNotUpdate() {
+    public void insertingAPennyOfMinWeightAndSizeShouldReturnZeroCentValue(){
         insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(0, insertedCoins.insertCoin(18.0,  2.4));
     }
 
     @Test //Test to make sure a small penny isn't confused for a large dime
-    public void insertingARandomInvalidCoinShouldReturnZeroCentValueAndDisplayShouldNotUpdate() {
+    public void insertingARandomInvalidCoinShouldReturnZeroCentValue(){
         insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(0, insertedCoins.insertCoin(12.0,  1.8));
     }
@@ -127,5 +126,3 @@ public class InsertedCoinsTest {
         assertEquals(0, insertedCoins.getAmountAvailableForPurchase());
     }
 }
-
-

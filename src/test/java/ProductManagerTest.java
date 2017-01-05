@@ -2,13 +2,12 @@
 // @author Scott Miller
 // @file ProductManagerTest.java
 ///////////////////////////////
-
 package VendingMachine;
 import org.junit.Test;
 import java.util.ArrayList;
 import static junit.framework.TestCase.assertEquals;
 
-public class ProductManagerTest {
+public class ProductManagerTest{
     @Test
     public void atInitializationProductManagerAcceptsInitialInventoryAndGetQuantityOrPriceConfirms(){
         ProductManager productManager = new ProductManager(1, 1, 1);
