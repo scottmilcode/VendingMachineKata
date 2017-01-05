@@ -12,30 +12,30 @@ public class ProductManagerTest {
     @Test
     public void atInitializationProductManagerAcceptsInitialInventoryAndGetQuantityOrPriceConfirms(){
         ProductManager productManager = new ProductManager(1, 1, 1);
-        assertEquals(1.00, productManager.getQuantityOrPrice("COLA"));
-        assertEquals(0.50, productManager.getQuantityOrPrice("CHIPS"));
-        assertEquals(0.65, productManager.getQuantityOrPrice("CANDY"));
+        assertEquals(100, productManager.getQuantityOrPrice("COLA"));
+        assertEquals(50, productManager.getQuantityOrPrice("CHIPS"));
+        assertEquals(65, productManager.getQuantityOrPrice("CANDY"));
     }
 
     @Test
     public void atInitializationProductManagerAcceptsEmptyInitialInventoryAndGetQuantityOrPriceConfirmsNoPriceForSoldOut(){
         ProductManager productManager = new ProductManager(0, 0, 0);
-        assertEquals(0.0, productManager.getQuantityOrPrice("COLA"));
-        assertEquals(0.0, productManager.getQuantityOrPrice("CHIPS"));
-        assertEquals(0.0, productManager.getQuantityOrPrice("CANDY"));
+        assertEquals(0, productManager.getQuantityOrPrice("COLA"));
+        assertEquals(0, productManager.getQuantityOrPrice("CHIPS"));
+        assertEquals(0, productManager.getQuantityOrPrice("CANDY"));
     }
 
     @Test
     public void getQuantityOrPriceReturnsNegativeOneForInvalidProduct(){
         ProductManager productManager = new ProductManager(0, 0, 0);
-        assertEquals(-1.0, productManager.getQuantityOrPrice("BADPRODCUT"));
+        assertEquals(-1, productManager.getQuantityOrPrice("BADPRODCUT"));
     }
 
     @Test
     public void afterASingleProductIsRemovedGetCountOrPriceReturnsNoPriceForSoldOut(){
         ProductManager productManager = new ProductManager(1, 1, 1);
         assertEquals(true, productManager.removeProduct("COLA"));
-        assertEquals(0.0, productManager.getQuantityOrPrice("COLA"));
+        assertEquals(0, productManager.getQuantityOrPrice("COLA"));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class ProductManagerTest {
     public void afterASingleProductIsAddedGetCountOrPriceReturnsPriceForItem(){
         ProductManager productManager = new ProductManager(0, 0, 0);
         assertEquals(true, productManager.addProduct("COLA"));
-        assertEquals(1.00, productManager.getQuantityOrPrice("COLA"));
+        assertEquals(100, productManager.getQuantityOrPrice("COLA"));
     }
 
     @Test
@@ -65,23 +65,23 @@ public class ProductManagerTest {
 
     @Test
     public void getPricesOfAvailableProductsReturnsPartialListOfPricesWhenOnlySomeProductsAreAvailable(){
-        ArrayList<Double> prices;
+        ArrayList<Integer> prices;
         ProductManager productManager = new ProductManager(1, 0, 0);
         prices = productManager.getPricesOfAvailableProducts();
 
         assertEquals(1, prices.size()); //should be three items
-        assertEquals(true, prices.contains(1.0)); //should contain a $1 price
+        assertEquals(true, prices.contains(100)); //should contain a $1 price
     }
 
     @Test
     public void getPricesOfAvailableProductsReturnsListOfThreePricesWhenAllProductsAreAvailable(){
-        ArrayList<Double> prices;
+        ArrayList<Integer> prices;
         ProductManager productManager = new ProductManager(1, 1, 1);
         prices = productManager.getPricesOfAvailableProducts();
 
         assertEquals(3, prices.size()); //should be three items
-        assertEquals(true, prices.contains(1.0)); //should contain a $1 price
-        assertEquals(true, prices.contains(0.5)); //should contain a $0.5 price
-        assertEquals(true, prices.contains(0.65)); //should contain a $0.65 price
+        assertEquals(true, prices.contains(100)); //should contain a $1 price
+        assertEquals(true, prices.contains(50)); //should contain a $0.5 price
+        assertEquals(true, prices.contains(65)); //should contain a $0.65 price
     }
 }

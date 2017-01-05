@@ -22,17 +22,17 @@ public class ProductManager {
     //         without modifying code if products were to be changed.
     /////////////////////////////////////////////////////////////////////////////
     private enum Product {
-        COLA  (1.0),
-        CHIPS (0.5),
-        CANDY (0.65);
+        COLA  (100),
+        CHIPS (50),
+        CANDY (65);
 
-        private double Price; // in dollars
+        private int Price; // in dollars
         private int Quantity; // how many are available for sale
 
         ////////////////////////////////////////////////////////////////////////////
         // @brief Default Constructor
         /////////////////////////////////////////////////////////////////////////////
-        Product(double price){
+        Product(int price){
             Price = price;
         }
 
@@ -41,7 +41,7 @@ public class ProductManager {
         public void setQuantity(int quantity){ Quantity = quantity; }
         public void removeProduct(){ Quantity--; }
         public void addProduct(){ Quantity++; }
-        public double getPrice(){ return(Price); }
+        public int getPrice(){ return(Price); }
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,7 @@ public class ProductManager {
     // @returns If a product is available it's price, else 0 indicating the
     //          product is sold out. If an invalid productName is provided -1
     /////////////////////////////////////////////////////////////////////////////
-    public double getQuantityOrPrice(String productName){
+    public int getQuantityOrPrice(String productName){
         for (Product p : Product.values()) {
             if(p.name() == productName) {
                 if(p.getQuantity() > 0) {
@@ -130,8 +130,8 @@ public class ProductManager {
     // @brief Returns list of prices for products that are available
     // @returns ArrayList of Doubles containing prices of products
     /////////////////////////////////////////////////////////////////////////////
-    public ArrayList<Double> getPricesOfAvailableProducts(){
-        ArrayList<Double> prices = new ArrayList<Double>();
+    public ArrayList<Integer> getPricesOfAvailableProducts(){
+        ArrayList<Integer> prices = new ArrayList<Integer>();
 
         for (Product p : Product.values()) {
             if (p.getQuantity() > 0) {

@@ -63,7 +63,7 @@ public class DisplayTest {
     @Test
     public void whenProductSelectedGetMessageReturnsPriceAndProductPriceFollowedByInsertCoin(){
         display = new Display(true);
-        display.setProductSelected(0.65);
+        display.setProductSelected(65);
         assertEquals("PRICE $0.65", display.getMessage());
         assertEquals("INSERT COIN", display.getMessage());
     }

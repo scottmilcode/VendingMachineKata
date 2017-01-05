@@ -27,8 +27,8 @@ public class Display {
             ProductSoldOut,  // @var indicates that a selected product is sold out
             ProductSelected; // @var indicates that an available product was selected
 
-    double ProductPrice, // @var price of selected product
-           AmountAvailable; // @var total amount of currency available to use for purchase
+    int ProductPrice;       // @var price of selected product
+    double AmountAvailable; // @var total amount of currency available to use for purchase
 
     /////////////////////////////////////////////////////////////////////////////
     // @brief Default Constructor
@@ -38,7 +38,8 @@ public class Display {
     public Display(boolean changeAvailable){
         ChangeAvailable = changeAvailable;
         ProductVended = ProductSoldOut = ProductSelected = false;
-        ProductPrice = AmountAvailable = 0.0;
+        ProductPrice = 0;
+        AmountAvailable = 0.0;
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -48,8 +49,11 @@ public class Display {
     public String getMessage(){
         if(ProductSelected){
             ProductSelected = false;
+            double displayPrice = ProductPrice;
+
+            displayPrice/=100; //convert to decimal/dollars double for display
             DecimalFormat currencyFormater = new DecimalFormat("0.00");
-            return("PRICE $" + currencyFormater.format(ProductPrice));
+            return("PRICE $" + currencyFormater.format(displayPrice));
         }
         else if(ProductVended){
             ProductVended = false; //reset flag once message has been displayed
@@ -101,7 +105,7 @@ public class Display {
     // @brief Sets product selected flag to true
     // @params productPrice price to display
     /////////////////////////////////////////////////////////////////////////////
-    public void setProductSelected(double productPrice)
+    public void setProductSelected(int productPrice)
     {
         ProductSelected = true;
         ProductPrice = productPrice;
