@@ -29,6 +29,9 @@ public class ChangeManager {
                 NumDimes, //@var number of Dimes available
                 NumQuarters; //@var number of Quarters available
 
+    private final int maxDenomination = 25; //@var maximum denomination currently allowed
+    private final int minDenomination = 5; //@var minimum denomination currently allowed
+
     ////////////////////////////////////////////////////////////////////////////
     // @brief Default Constructor
     // @params numNickels - number of nickels in machine at start up
@@ -151,8 +154,8 @@ public class ChangeManager {
         int lowestPrice = productPrices.get(productPrices.indexOf(Collections.min(productPrices)));
         int highestPrice = productPrices.get(productPrices.indexOf(Collections.max(productPrices)));
 
-        int startTestAmount = lowestPrice + 5; //again hard coded 5 cent denomination
-        int stopTestAmount = highestPrice - 5 + 25; //again hard coded denominations
+        int startTestAmount = lowestPrice + minDenomination; //again hard coded 5 cent denomination
+        int stopTestAmount = highestPrice - minDenomination + maxDenomination; //again hard coded denominations
 
         for(Integer productPrice: productPrices){ //loop through products
             for (int testAmount = startTestAmount; testAmount <= stopTestAmount; testAmount += 5){ //loop through possible inserted amounts
