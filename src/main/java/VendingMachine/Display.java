@@ -80,7 +80,6 @@ public class Display{
     //                           true if change is available, false if not
     /////////////////////////////////////////////////////////////////////////////
     public void setChangeAvailable(boolean changeAvailable){
-
         ChangeAvailable = changeAvailable;
     }
 
@@ -116,4 +115,12 @@ public class Display{
     public void coinInserted(double amount){
         AmountAvailable += amount/100; //convert from cents to dollars and save as a double for display formatting
     }
+
+    /////////////////////////////////////////////////////////////////////////////
+    // @brief Resets the tracked amount available for purchase
+    /////////////////////////////////////////////////////////////////////////////
+    public void resetAmountAvailableForPurchase(){
+        AmountAvailable = 0;
+    }
+
 }

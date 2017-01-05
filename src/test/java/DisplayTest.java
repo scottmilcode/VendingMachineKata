@@ -93,4 +93,13 @@ public class DisplayTest{
         assertEquals("THANK YOU", display.getMessage());
         assertEquals("INSERT COIN", display.getMessage());
     }
+
+    @Test
+    public void resetAmountAvailableResetsDisplayAmountToZero(){
+        display = new Display(true);
+        display.coinInserted(5);
+        assertEquals("$0.05", display.getMessage());
+        display.resetAmountAvailableForPurchase();
+        assertEquals("INSERT COIN", display.getMessage());
+    }
 }
