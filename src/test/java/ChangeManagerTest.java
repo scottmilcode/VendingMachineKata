@@ -124,7 +124,7 @@ public class ChangeManagerTest {
 
     @Test
     public void whenEnoughNickelsAsChangeCoinsInMachineAndNoOthersIsChangeAvailableReturnsTrue(){
-        ChangeManager changeManager = new ChangeManager(10, 0, 0);
+        ChangeManager changeManager = new ChangeManager(14, 0, 0);
         ArrayList<Integer> productPrices = new ArrayList<Integer>();
         productPrices.add(100);
         productPrices.add(65);
@@ -167,17 +167,6 @@ public class ChangeManagerTest {
     }
 
     @Test
-    public void whenOnlyOneDimeAndOneQuarterAsChangeCoinsInMachineAndNoOthersIsChangeAvailableReturnsFalse(){
-        ChangeManager changeManager = new ChangeManager(0, 1, 1);
-        ArrayList<Integer> productPrices = new ArrayList<Integer>();
-        productPrices.add(100);
-        productPrices.add(65);
-        productPrices.add(50);
-
-        assertEquals(false, changeManager.isChangeAvailable(productPrices));
-    }
-
-    @Test
     public void whenOnlyOneOfEachCoinAsChangeCoinsInMachineIsChangeAvailableReturnsFalse(){ //corner case here is needing 20 cents
         ChangeManager changeManager = new ChangeManager(1, 1, 1);
         ArrayList<Integer> productPrices = new ArrayList<Integer>();
@@ -200,5 +189,18 @@ public class ChangeManagerTest {
         assertEquals(true, changeManager.isChangeAvailable(productPrices));
         assertEquals(true, changeManager.makeChange(100, 120, returnChange)); //should remove two dimes
         assertEquals(false, changeManager.isChangeAvailable(productPrices));
+    }
+
+    @Test
+    public void whenChangeIsAvailableCheckingForChangeRepeatedlyShouldAlwaysReturnTrue(){ //corner case here is needing 20 cents
+        ChangeManager changeManager = new ChangeManager(2, 2, 2);
+        ArrayList<Integer> productPrices = new ArrayList<Integer>();
+        ArrayList<Integer> returnChange = new ArrayList<Integer>();
+        productPrices.add(100);
+        productPrices.add(65);
+        productPrices.add(50);
+
+        assertEquals(true, changeManager.isChangeAvailable(productPrices));
+        assertEquals(true, changeManager.isChangeAvailable(productPrices));
     }
 }
