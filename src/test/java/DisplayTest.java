@@ -71,25 +71,25 @@ public class DisplayTest {
     @Test
     public void whenDimeInsertedGetMessageReturnsTotalAmountAvailableForPurchaseWithProperNumberOfDecimalPlaces(){
         display = new Display(true);
-        display.coinInserted(0.10);
+        display.coinInserted(10);
         assertEquals("$0.10", display.getMessage());
     }
 
     @Test
     public void whenChangeInsertedGetMessageReturnsTotalAmountAvailableForPurchase(){
         display = new Display(true);
-        display.coinInserted(0.05);
+        display.coinInserted(5);
         assertEquals("$0.05", display.getMessage());
-        display.coinInserted(0.10);
+        display.coinInserted(10);
         assertEquals("$0.15", display.getMessage());
     }
 
     @Test
     public void whenChangeInsertedGetMessageReturnsTotalAmountAvailableForPurchaseThenAfterPurchaseThankYouThenInsertCoin() {
         display = new Display(true);
-        display.coinInserted(0.05);
+        display.coinInserted(5);
         assertEquals("$0.05", display.getMessage());
-        display.coinInserted(0.10);
+        display.coinInserted(10);
         assertEquals("$0.15", display.getMessage());
         display.setProductVended();
         assertEquals("THANK YOU", display.getMessage());

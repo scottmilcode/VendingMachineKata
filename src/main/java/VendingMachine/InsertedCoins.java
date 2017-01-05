@@ -52,11 +52,11 @@ public class InsertedCoins {
     //         without modifying code if coins were to be changed.
     /////////////////////////////////////////////////////////////////////////////
     private enum Coin {
-        NICKEL  (0.05, 21.2, 5.0, 20.1, 4.8),
-        DIME    (0.10, 17.9, 2.3, 17.0, 2.2),
-        QUARTER (0.25, 24.3, 5.7, 23.0, 5.4);
+        NICKEL  (5, 21.2, 5.0, 20.1, 4.8),
+        DIME    (10, 17.9, 2.3, 17.0, 2.2),
+        QUARTER (25, 24.3, 5.7, 23.0, 5.4);
 
-        private final double Value; // in dollars
+        private final int Value; // in cents
         private final double MinWeight; // in grams
         private final double MaxWeight; // in grams
         private final double MinDiameter; // in millimeters
@@ -65,7 +65,7 @@ public class InsertedCoins {
         /////////////////////////////////////////////////////////////////////////////
         // @brief Default Constructor
         /////////////////////////////////////////////////////////////////////////////
-        Coin(double value, double maxWeight, double maxDiameter, double minWeight, double minDiameter){
+        Coin(int value, double maxWeight, double maxDiameter, double minWeight, double minDiameter){
             Value = value;
             MaxWeight = maxWeight;
             MinWeight = minWeight;
@@ -74,7 +74,7 @@ public class InsertedCoins {
         }
 
         //Getters
-        private double getValue(){ return Value; }
+        private int getValue(){ return Value; }
         private double getMaxWeight(){ return MaxWeight; }
         private double getMinWeight(){ return MinWeight; }
         private double getMaxDiameter(){ return MaxDiameter; }
@@ -83,7 +83,7 @@ public class InsertedCoins {
 
 
     Display TheDisplay; // @var Display object being interfaced with
-    private double TotalAmountAvailable; // @var Stores the total value of valid coins that can be used for a purchase
+    private int TotalAmountAvailable; // @var Stores the total value of valid coins that can be used for a purchase
 
     /////////////////////////////////////////////////////////////////////////////
     // @brief Default Constructor
@@ -100,8 +100,8 @@ public class InsertedCoins {
     //         diameter - Measured diameter of coin in mm
     // @returns value of coin, 0.0 is coin is invalid.
     /////////////////////////////////////////////////////////////////////////////
-    public double insertCoin(double weight, double diameter){
-        double returnValue = 0.0; //default to 0 in the case of an invalid coin
+    public int insertCoin(double weight, double diameter){
+        int returnValue = 0; //default to 0 in the case of an invalid coin
 
         //Loop over accepted coins and see if we have a match
         for (Coin c : Coin.values()) {
@@ -122,7 +122,7 @@ public class InsertedCoins {
     // @brief Provides access to the tracked total value of vaild coins
     // @returns Returns total amount available in dollars
     /////////////////////////////////////////////////////////////////////////////
-    public double getAmountAvailableForPurchase(){
+    public int getAmountAvailableForPurchase(){
         return TotalAmountAvailable;
     }
 
@@ -133,7 +133,7 @@ public class InsertedCoins {
     //        sent to the coin return.
     /////////////////////////////////////////////////////////////////////////////
     public void resetAmountAvailableForPurchase(){
-        TotalAmountAvailable = 0.0;
+        TotalAmountAvailable = 0;
     }
 
 

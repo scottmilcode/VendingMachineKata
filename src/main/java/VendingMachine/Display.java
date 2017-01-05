@@ -114,7 +114,7 @@ public class Display {
     /////////////////////////////////////////////////////////////////////////////
     public void coinInserted(double amount)
     {
-        AmountAvailable += amount;
+        AmountAvailable += amount/100; //convert from cents to dollars and save as a double for display formatting
     }
 
 }
