@@ -1,6 +1,6 @@
 ///////////////////////////////
 // @author Scott Miller
-// @file InsertedCoinsTest.java
+// @file InsertedCoins.java
 ///////////////////////////////
 package VendingMachine;
 
