@@ -23,7 +23,7 @@ import java.util.Collections;
 //        to be loaded into the machine as specified by some outside
 //        configuration file
 /////////////////////////////////////////////////////////////////////////////
-public class ChangeManager {
+public class ChangeManager{
 
     private int NumNickels, //@var number of Nickels available
                 NumDimes, //@var number of Dimes available

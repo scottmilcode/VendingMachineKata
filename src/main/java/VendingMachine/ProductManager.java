@@ -11,7 +11,7 @@ import java.util.ArrayList;
 //        also allows items to be manually added to machine.  Currently
 //        does not account for any maximum limit on inventory.
 /////////////////////////////////////////////////////////////////////////////
-public class ProductManager {
+public class ProductManager{
 
     /////////////////////////////////////////////////////////////////////////////
     // @class Product
@@ -20,7 +20,7 @@ public class ProductManager {
     //         xml file or database.  This was the system could be easily updated
     //         without modifying code if products were to be changed.
     /////////////////////////////////////////////////////////////////////////////
-    private enum Product {
+    private enum Product{
         COLA  (100),
         CHIPS (50),
         CANDY (65);
@@ -109,7 +109,7 @@ public class ProductManager {
     }
 
     ////////////////////////////////////////////////////////////////////////////
-    // @brief Adds one product to inventory
+    // @brief Adds one product to inventory  THIS FUNCTION NO LONGER NEEDED
     // @params productName - name of product being queried
     // @returns If a product is available it's quantity is increased by 1 and true
     //          is returned. If a product doesn't exists (invalid name)
