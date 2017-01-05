@@ -11,10 +11,7 @@ package VendingMachine;
 //        functions to be called.  Similarly functions like sending
 //        coins to the return slot would activate mechanical actions.
 //
-//        At current all classes directly interface with the display
-//        when state changes that need to be communicated to the user occur.
-//
-//        Class only tracks coins that woudl be in a 'hold' before being
+//        Class only tracks coins that would be in a 'hold' before being
 //        sent to a collection tray after a purchase or the coin return.
 //        It is not concerned with those specific operations.
 //
@@ -82,7 +79,6 @@ public class InsertedCoins {
     }
 
 
-    Display TheDisplay; // @var Display object being interfaced with
     private int TotalAmountAvailable; // @var Stores the total value of valid coins that can be used for a purchase
 
     /////////////////////////////////////////////////////////////////////////////
@@ -90,8 +86,8 @@ public class InsertedCoins {
     // @params display - Vending machines display that needs updated about
     //                   state changes.
     /////////////////////////////////////////////////////////////////////////////
-    public InsertedCoins(Display display){
-        TheDisplay = display;
+    public InsertedCoins(){
+        TotalAmountAvailable = 0;
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -108,10 +104,6 @@ public class InsertedCoins {
             if( (weight >= c.getMinWeight() && weight <= c.getMaxWeight()) && (diameter >= c.getMinDiameter() && diameter <= c.getMaxDiameter()) ){
                 returnValue = c.getValue();
             }
-        }
-
-        if(0 < returnValue){ //This check technically isn't necessary with the design of Dispaly.coinInserted() but an extra safety.
-            TheDisplay.coinInserted(returnValue); //Send information about state change to display class
         }
 
         TotalAmountAvailable += returnValue;
@@ -135,8 +127,4 @@ public class InsertedCoins {
     public void resetAmountAvailableForPurchase(){
         TotalAmountAvailable = 0;
     }
-
-
-
-
 }

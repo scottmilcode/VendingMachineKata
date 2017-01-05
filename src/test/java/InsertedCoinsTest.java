@@ -35,97 +35,77 @@ import static junit.framework.TestCase.assertEquals;
 
 public class InsertedCoinsTest {
     InsertedCoins insertedCoins; //InsertedCoins object to use for testing
-    Display display; //Display object used for testing
 
     //Coin Insertion Tests
 
     @Test
     public void insertingANickelOfMaxWeightAndSizeShouldReturnFiveCentValueAndDisplayShouldUpdate() {
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(5, insertedCoins.insertCoin(21.2, 5));
-        assertEquals("$0.05", display.getMessage());
     }
 
     @Test
     public void insertingANickelOfMinWeightAndSizeShouldReturnFiveCentValueAndDisplayShouldUpdate() {
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(5, insertedCoins.insertCoin(20.1, 4.8));
-        assertEquals("$0.05", display.getMessage());
     }
 
     @Test
     public void insertingADimeOfMaxWeightAndSizeShouldReturnTenCentValueAndDisplayShouldUpdate() {
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(10, insertedCoins.insertCoin(17.9, 2.3));
-        assertEquals("$0.10", display.getMessage());
     }
 
     @Test
     public void insertingADimeOfMinWeightAndSizeShouldReturnTenCentValueAndDisplayShouldUpdate() {
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(10, insertedCoins.insertCoin(17, 2.2));
-        assertEquals("$0.10", display.getMessage());
     }
 
     @Test
     public void insertingAQuarterOfMaxWeightAndSizeShouldReturnTwentyFiveCentValueAndDisplayShouldUpdate() {
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(25, insertedCoins.insertCoin(24.3,5.7));  //insert a dime
-        assertEquals("$0.25", display.getMessage());
     }
 
     @Test
     public void insertingAQuarterOfMinWeightAndSizeShouldReturnTwentyFiveCentValueAndDisplayShouldUpdate() {
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(25, insertedCoins.insertCoin(23, 5.4));
-        assertEquals("$0.25", display.getMessage());
     }
 
 
     @Test //Test to make sure a small penny isn't confused for a large dime
     public void insertingAPennyOfMinWeightAndSizeShouldReturnZeroCentValueAndDisplayShouldNotUpdate() {
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(0, insertedCoins.insertCoin(18.0,  2.4));
-        assertEquals("INSERT COIN", display.getMessage());
     }
 
     @Test //Test to make sure a small penny isn't confused for a large dime
     public void insertingARandomInvalidCoinShouldReturnZeroCentValueAndDisplayShouldNotUpdate() {
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(0, insertedCoins.insertCoin(12.0,  1.8));
-        assertEquals("INSERT COIN", display.getMessage());
     }
 
     //Coin Storage/Return/Use Tests
 
     @Test
     public void getTotalAmountReturnsTotalValueOfValidCoinsWhenNoCoinsInserted(){
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(0, insertedCoins.getAmountAvailableForPurchase());
     }
 
 
     @Test
     public void getTotalAmountReturnsTotalValueOfValidCoinsAfterOneCoinInserted(){
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(10, insertedCoins.insertCoin(17.9, 2.3)); //insert a dime
         assertEquals(10, insertedCoins.getAmountAvailableForPurchase());
     }
 
     @Test
     public void getTotalAmountReturnsTotalValueOfValidCoinsAfterMultipleCoinsInserted(){
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(10, insertedCoins.insertCoin(17.9, 2.3));  //insert a dime
         assertEquals(25, insertedCoins.insertCoin(23, 5.4)); //insert a quarter
         assertEquals(35, insertedCoins.getAmountAvailableForPurchase());
@@ -133,8 +113,7 @@ public class InsertedCoinsTest {
 
     @Test
     public void getTotalAmountReturnsTotalValueOfValidCoinsAfterMultipleCoinsInsertedAndInvalidCoinInserted(){
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(10, insertedCoins.insertCoin(17.9, 2.3)); //insert a dime
         assertEquals(0, insertedCoins.insertCoin(12.0,  1.8)); //insert invalid coin
         assertEquals(10, insertedCoins.getAmountAvailableForPurchase());
@@ -142,8 +121,7 @@ public class InsertedCoinsTest {
 
     @Test
     public void resetCoinsClearedClearsAmountAvailableForPurchase(){
-        display = new Display(true); //setup display with return change available
-        insertedCoins = new InsertedCoins(display); //passing display object to update
+        insertedCoins = new InsertedCoins(); //passing display object to update
         assertEquals(10, insertedCoins.insertCoin(17.9, 2.3)); //insert a dime
         insertedCoins.resetAmountAvailableForPurchase();
         assertEquals(0, insertedCoins.getAmountAvailableForPurchase());
