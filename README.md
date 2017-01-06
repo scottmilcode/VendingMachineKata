@@ -5,13 +5,17 @@ Vending Machine Kata
 
 To Build
 --------
+Project will require Java JRE or JDK be installed.  If necessary it can be downloaded here:  
+http://www.oracle.com/technetwork/java/javase/downloads/index.html
+Version 8u111 or later is recommended.
+
 Code example has an accompanying gradle build file.  Executing 'gradle build' from the project directory will build
 the code and run all tests. 
 
 Additionally the gradle wrapper has been provided as well such that the project can be built if you do not have gradle
-already installed.  Only an internet connection is required.
+already installed.  Only and internet connection and the Java installation are required.
 
-From the root project directory:
+Using Gradle Wrapper - From the root project directory:
 
 On Windows:
 	gradlew.bat build
